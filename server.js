@@ -70,7 +70,9 @@ passport.deserializeUser((user, done) => {
   done(null, user);
 });
 
-app.get('/login',
+app.get(
+  //#swagger.tags=[login]
+  '/login',
   passport.authenticate('google', { scope: ['profile', 'email'] }, (req, res) => {})
 );
 
@@ -79,7 +81,9 @@ app.get('/logout', (req, res) => {
   res.redirect('/api-docs');
 });
 
-app.get('/auth/google/callback',
+app.get(
+  //#swagger.tags=[logout]
+  '/auth/google/callback',
   passport.authenticate('google', { failureRedirect: '/' }),
   async (req, res) => {
     const token = jwt.sign({ user: req.user }, 'secret', { expiresIn: '1h' });
