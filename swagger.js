@@ -5,8 +5,8 @@ const doc = {
         title: "eCommerce Api",
         description: "eCommerce CRUD Api"
     },
-    host: "cse-341-project2-8oxr.onrender.com",
-    schemes: ["http"]
+    host: "cse341-final-project-sgk7.onrender.com",
+    schemes: ["https"]
 
     //host: "localhost:3000",
     //schemes: ["http"]
