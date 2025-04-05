@@ -20,7 +20,7 @@ app.use(cookieParser());
 
 const  userControler = require("./controllers/users.js");
 
-delete swaggerDocs.paths["/auth/google/callback"];
+
 
 mongodb.initDb((err) =>{
     if(err){
