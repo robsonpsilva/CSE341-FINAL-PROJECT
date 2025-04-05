@@ -18,7 +18,9 @@ const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
 app.use(cookieParser());
 
-const  userControler = require("./controllers/users.js")
+const  userControler = require("./controllers/users.js");
+
+delete swaggerDocs.paths["/auth/google/callback"];
 
 mongodb.initDb((err) =>{
     if(err){
