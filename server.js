@@ -70,19 +70,44 @@ passport.deserializeUser((user, done) => {
   done(null, user);
 });
 
-app.get(
-  //#swagger.tags=[login]
-  '/login',
-  passport.authenticate('google', { scope: ['profile', 'email'] }, (req, res) => {})
+
+/**
+ * @swagger
+ * tags:
+ *   name: Login
+ *   description: Rotas de autenticação
+ */
+
+/**
+ * @swagger
+ * /login:
+ *   get:
+ *     summary: Login com Google OAuth
+ *     tags: [Login]
+ *     responses:
+ *       302:
+ *         description: Redireciona para autenticação do Google
+ */
+
+app.get('/login', passport.authenticate('google', { scope: ['profile', 'email'] }, (req, res) => {})
 );
 
+/**
+ * @swagger
+ * /logout:
+ *   get:
+ *     summary: Logout do usuário
+ *     tags: [Logout]
+ *     responses:
+ *       200:
+ *         description: Remove o cookie e redireciona para a documentação
+ */
 app.get('/logout', (req, res) => {
   res.clearCookie('token');
   res.redirect('/api-docs');
 });
 
 app.get(
-  //#swagger.tags=[logout]
   '/auth/google/callback',
   passport.authenticate('google', { failureRedirect: '/' }),
   async (req, res) => {
