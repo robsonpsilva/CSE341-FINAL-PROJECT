@@ -49,7 +49,7 @@ router.put("/categories/:id", isAuthenticated,  validation.saveCategory, categor
 router.get(
     //#swagger.tags=[Get carts by id]
     "/carts/:id", isAuthenticated, cartController.getCartById); // Ler carrinho
-router.post("createcarts", isAuthenticated,validation.validateCart, cartController.createCart); // Criar carrinho
+router.post("/createcarts", isAuthenticated,validation.validateCart, cartController.createCart); // Criar carrinho
 router.put("/updatecarts/:id", isAuthenticated, validation.validateCart, cartController.updateCart); // Atualizar carrinho
 router.delete("/deletecarts/:id", isAuthenticated, cartController.deleteCart); // Deletar carrinho
 
@@ -61,8 +61,7 @@ router.get(
 
 
 // Atualizar telefone e endereço
-router.put(
-    "/updateuser/:id",
+router.put( "/updateuser/:id",
     validation.validateUserDetails,
     userController.updateUserDetails
   );
