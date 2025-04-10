@@ -49,26 +49,26 @@ router.put("/categories/:id", isAuthenticated,  validation.saveCategory, categor
 router.get(
     //#swagger.tags=[Get carts by id]
     "/carts/:id", isAuthenticated, cartController.getCartById); // Ler carrinho
-router.post("/createcarts", isAuthenticated,validation.validateCart, cartController.createCart); // Criar carrinho
-router.put("/updatecarts/:id", isAuthenticated, validation.validateCart, cartController.updateCart); // Atualizar carrinho
-router.delete("/deletecarts/:id", isAuthenticated, cartController.deleteCart); // Deletar carrinho
+router.post("/carts", isAuthenticated,validation.validateCart, cartController.createCart); // Criar carrinho
+router.put("/carts/:id", isAuthenticated, validation.validateCart, cartController.updateCart); // Atualizar carrinho
+router.delete("/carts/:id", isAuthenticated, cartController.deleteCart); // Deletar carrinho
 
 
 // Buscar dados do usuário
 router.get(
     //#swagger.tags=[Get user by id]
-    "/getuser/:id", userController.getUserDetails);
+    "/user/:id", userController.getUserDetails);
 
 
 // Atualizar telefone e endereço
-router.put( "/updateuser/:id",
+router.put( "/user/:id",
     validation.validateUserDetails,
     userController.updateUserDetails
   );
   
   
   // Excluir telefone e endereço
-router.delete("/deleteuser/:id", userController.deleteUserDetails);
+router.delete("/user/:id", userController.deleteUserDetails);
 
 
 module.exports = router;
