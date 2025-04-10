@@ -16,6 +16,8 @@ router.get("/", (req,res) => {res.send(`<html>
         </html>`);});
 
 
+
+        
 const productsController = require("../controllers/products");
 const categoryController = require("../controllers/categories");
 
@@ -28,8 +30,25 @@ const {isAuthenticated} = require( "../middleware/authenticate");
 const validation = require("../middleware/validate");
 
 // Route for products
+/**
+ * @swagger
+ * tags:
+ *   - name: Products
+ *     description: Operations related to managing products.
+ */
+
+/**
+ * @swagger
+ * /products:
+ *   get:
+ *     tags:
+ *       - Products
+ *     summary: Retrieve all products
+ *     responses:
+ *       200:
+ *         description: List of products
+ */
 router.get(
-    //#swagger.tags=[Get all products]
     "/products",isAuthenticated, productsController.getAllProducts); // Route to search all products
 router.get("/products/:id", isAuthenticated, productsController.getSingleProduct); // Route to search for a product by ID
 router.post("/products", isAuthenticated, validation.saveProduct, productsController.insertProduct); // Route to create product
@@ -38,26 +57,89 @@ router.put("/products/:id", isAuthenticated, validation.saveProduct, productsCon
 
 //route for categories
 
+/**
+ * @swagger
+ * tags:
+ *   - name: Categories
+ *     description: Operations related to managing categories.
+ */
+
+/**
+ * @swagger
+ * /categories:
+ *   get:
+ *     tags:
+ *       - Categories
+ *     summary: Retrieve all categories
+ *     responses:
+ *       200:
+ *         description: List of categories
+ */
+
 router.get(
-    //#swagger.tags=[Get all products]
     "/categories",isAuthenticated, categoryController.getAllCategories); // Route to search all Categories
 router.get("/categories/:id", isAuthenticated, categoryController.getSingleCategory); // Route to search for a category by ID
 router.post("/categories", isAuthenticated, validation.saveCategory, categoryController.insertCategory); // Route to create category
 router.delete("/categories/:id", isAuthenticated, categoryController.deleteCategory); //Route to delete a category
 router.put("/categories/:id", isAuthenticated,  validation.saveCategory, categoryController.updateCategory);//route to update category
 
+
+/**
+ * @swagger
+ * tags:
+ *   - name: Carts
+ *     description: Operations related to shopping carts.
+ */
+
+/**
+ * @swagger
+ * /cart/{id}:
+ *   put:
+ *     tags:
+ *       - Carts
+ *     summary: Update cart items
+ *     parameters:
+ *       - name: id
+ *         in: path
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Cart updated
+ */
 router.get(
-    //#swagger.tags=[Get carts by id]
     "/carts/:id", isAuthenticated, cartController.getCartById); // Ler carrinho
 router.post("/carts", isAuthenticated,validation.validateCart, cartController.createCart); // Criar carrinho
 router.put("/carts/:id", isAuthenticated, validation.validateCart, cartController.updateCart); // Atualizar carrinho
 router.delete("/carts/:id", isAuthenticated, cartController.deleteCart); // Deletar carrinho
 
 
-// Buscar dados do usuário
-router.get(
-    //#swagger.tags=[Get user by id]
-    "/user/:id", userController.getUserDetails);
+/**
+ * @swagger
+ * tags:
+ *   - name: Users
+ *     description: Operations related to managing users.
+ */
+
+/**
+ * @swagger
+ * /users/{id}:
+ *   get:
+ *     tags:
+ *       - Users
+ *     summary: Retrieve a specific user by ID
+ *     parameters:
+ *       - name: id
+ *         in: path
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: User details
+ */
+router.get("/user/:id", userController.getUserDetails);
 
 
 // Atualizar telefone e endereço

@@ -23,7 +23,9 @@
     },
     "/products": {
       "get": {
-        "tags": [],
+        "tags": [
+          "Products"
+        ],
         "description": "",
         "produces": [
           "application/json"
@@ -223,7 +225,9 @@
     },
     "/categories": {
       "get": {
-        "tags": [],
+        "tags": [
+          "Categories"
+        ],
         "description": "",
         "produces": [
           "application/json"
@@ -399,7 +403,6 @@
     },
     "/carts/{id}": {
       "get": {
-        "tags": [],
         "description": "",
         "parameters": [
           {
@@ -531,7 +534,6 @@
     },
     "/user/{id}": {
       "get": {
-        "tags": [],
         "description": "",
         "parameters": [
           {
