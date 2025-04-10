@@ -402,7 +402,9 @@
       }
     },
     "/carts/{id}": {
-      "get": {
+      "get": {"tags": [
+          "Carts"
+        ],
         "description": "",
         "parameters": [
           {
@@ -427,7 +429,9 @@
           }
         }
       },
-      "put": {
+      "put": {"tags": [
+          "Carts"
+        ],
         "description": "",
         "parameters": [
           {
@@ -470,7 +474,9 @@
           }
         }
       },
-      "delete": {
+      "delete": {"tags": [
+          "Carts"
+        ],
         "description": "",
         "parameters": [
           {
@@ -497,7 +503,9 @@
       }
     },
     "/carts": {
-      "post": {
+      "post": {"tags": [
+          "Carts"
+        ],
         "description": "",
         "parameters": [
           {
@@ -533,7 +541,9 @@
       }
     },
     "/user/{id}": {
-      "get": {
+      "get": {"tags": [
+          "User"
+        ],
         "description": "",
         "parameters": [
           {
@@ -555,7 +565,9 @@
           }
         }
       },
-      "put": {
+      "put": {"tags": [
+          "User"
+        ],
         "description": "",
         "parameters": [
           {
@@ -595,7 +607,9 @@
           }
         }
       },
-      "delete": {
+      "delete": {"tags": [
+          "User"
+        ],
         "description": "",
         "parameters": [
           {
@@ -630,6 +644,9 @@
     },
     "/login": {
       "get": {
+        "tags": [
+          "Login/Logout"
+        ],
         "description": "",
         "responses": {
           "default": {
@@ -640,6 +657,9 @@
     },
     "/logout": {
       "get": {
+        "tags": [
+          "Login/Logout"
+        ],
         "description": "",
         "responses": {
           "default": {
