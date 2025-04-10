@@ -19,6 +19,10 @@ router.get("/", (req,res) => {res.send(`<html>
 const productsController = require("../controllers/products");
 const categoryController = require("../controllers/categories");
 
+const cartController = require("../controllers/cart");
+
+const userController = require("../controllers/users");
+
 const {isAuthenticated} = require( "../middleware/authenticate");
 
 const validation = require("../middleware/validate");
@@ -42,7 +46,30 @@ router.post("/categories", isAuthenticated, validation.saveCategory, categoryCon
 router.delete("/categories/:id", isAuthenticated, categoryController.deleteCategory); //Route to delete a category
 router.put("/categories/:id", isAuthenticated,  validation.saveCategory, categoryController.updateCategory);//route to update category
 
+router.get(
+    //#swagger.tags=[Get carts by id]
+    "/:id", isAuthenticated, cartController.getCartById); // Ler carrinho
+router.post("/create", isAuthenticated,validation.validateCart, cartController.createCart); // Criar carrinho
+router.put("/:id", isAuthenticated, validation.validateCart, cartController.updateCart); // Atualizar carrinho
+router.delete("/:id", isAuthenticated, cartController.deleteCart); // Deletar carrinho
 
+
+// Buscar dados do usuário
+router.get(
+    //#swagger.tags=[Get user by id]
+    "/:id", userController.getUserDetails);
+
+
+// Atualizar telefone e endereço
+router.put(
+    "/:id",
+    validation.validateUserDetails,
+    userController.updateUserDetails
+  );
+  
+  
+  // Excluir telefone e endereço
+router.delete("/:id", userController.deleteUserDetails);
 
 
 module.exports = router;

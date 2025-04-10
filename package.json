@@ -16,5 +16,13 @@
     "swagger-ui-express": "^5.0.1",
     "validator": "^13.15.0",
     "validatorjs": "^3.22.1"
-  }
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  },
+    "scripts": {
+      "test": "jest"
+    }
 }
+
+

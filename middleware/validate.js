@@ -41,8 +41,52 @@ const saveCategory = (req, res, next) =>  {
     });
 };
 
+const validateCart = (req, res, next) => {
+    const { userId, items } = req.body;
+  
+    if (!userId || typeof userId !== "string") {
+      return res.status(400).json({ message: "Invalid or missing userId" });
+    }
+  
+    if (!items || items.length === 0) {
+      return res.status(400).json({ message: "Cart items cannot be empty" });
+    }
+  
+    for (const item of items) {
+      if (!item.productId || !item.quantity || item.quantity <= 0) {
+        return res.status(400).json({ message: "Invalid product or quantity" });
+      }
+    }
+  
+    next();
+  };
+
+  const validateUserDetails = (req, res, next) => {
+    const { phone, address } = req.body;
+  
+    if (phone && typeof phone !== "string") {
+      return res.status(400).json({ message: "Invalid phone number" });
+    }
+  
+    if (address) {
+      const { street, city, state, zip } = address;
+      if (
+        !street || typeof street !== "string" ||
+        !city || typeof city !== "string" ||
+        !state || typeof state !== "string" ||
+        !zip || typeof zip !== "string"
+      ) {
+        return res.status(400).json({ message: "Invalid address format" });
+      }
+    }
+  
+    next();
+  };
+
 module.exports = {
     saveProduct,
-    saveCategory
+    saveCategory,
+    validateCart,
+    validateUserDetails
 };
 
