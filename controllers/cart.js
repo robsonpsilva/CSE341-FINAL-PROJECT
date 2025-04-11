@@ -3,11 +3,11 @@ const ObjectId = require("mongodb").ObjectId;
 
 // Criar um novo carrinho
 const createCart = async (req, res) => {
+  //#swagger.tags=["Carts"]
   try {
     const { userId, items } = req.body;
-    const db = mongodb.db();
-    const productsCollection = db.collection("products");
-    const cartCollection = db.collection("cart");
+    const productsCollection = mongodb.getDatabase().db().collection("products");
+    const cartCollection = mongodb.getDatabase().db().collection("carts");
 
     let totalPrice = 0;
 
@@ -44,10 +44,10 @@ const createCart = async (req, res) => {
 
 // Ler um carrinho pelo ID
 const getCartById = async (req, res) => {
+  //#swagger.tags=["Carts"]
   try {
     const cartId = req.params.id;
-    const db = mongodb.db();
-    const cartCollection = db.collection("cart");
+    const cartCollection = mongodb.getDatabase().db().collection("carts");
 
     const cart = await cartCollection.findOne({ _id: new ObjectId(cartId) });
 
@@ -64,15 +64,33 @@ const getCartById = async (req, res) => {
 
 // Atualizar um carrinho
 const updateCart = async (req, res) => {
+  //#swagger.tags=["Carts"]
   try {
     const cartId = req.params.id;
     const { items } = req.body;
-    const db = mongodb.db();
-    const cartCollection = db.collection("cart");
+    const cartCollection = mongodb.getDatabase().db().collection("carts");
+    const productsCollection = mongodb.getDatabase().db().collection("products");
+    let totalPrice = 0;
+    for (const item of items) {
+      const product = await productsCollection.findOne({ _id: new ObjectId(item.productId) });
+
+      if (!product || product.stock < item.quantity) {
+        return res.status(400).json({ message: `Insufficient stock for ${product?.name || 'unknown product'}` });
+      }
+
+      totalPrice += product.price * item.quantity;
+    }
+
+    // const cart = {
+    //   userId,
+    //   items,
+    //   totalPrice,
+    //   updatedAt: new Date(),
+    // };
 
     const updateResult = await cartCollection.updateOne(
       { _id: new ObjectId(cartId) },
-      { $set: { items, updatedAt: new Date() } }
+      { $set: { items, totalPrice, updatedAt: new Date() } }
     );
 
     if (updateResult.matchedCount === 0) {
@@ -88,10 +106,10 @@ const updateCart = async (req, res) => {
 
 // Deletar um carrinho pelo ID
 const deleteCart = async (req, res) => {
+  //#swagger.tags=["Carts"]
   try {
     const cartId = req.params.id;
-    const db = mongodb.db();
-    const cartCollection = db.collection("cart");
+    const cartCollection = mongodb.getDatabase().db().collection("carts");
 
     const deleteResult = await cartCollection.deleteOne({ _id: new ObjectId(cartId) });
 

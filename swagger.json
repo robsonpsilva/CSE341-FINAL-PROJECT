@@ -402,7 +402,8 @@
       }
     },
     "/carts/{id}": {
-      "get": {"tags": [
+      "get": {
+        "tags": [
           "Carts"
         ],
         "description": "",
@@ -429,7 +430,8 @@
           }
         }
       },
-      "put": {"tags": [
+      "put": {
+        "tags": [
           "Carts"
         ],
         "description": "",
@@ -474,7 +476,8 @@
           }
         }
       },
-      "delete": {"tags": [
+      "delete": {
+        "tags": [
           "Carts"
         ],
         "description": "",
@@ -503,7 +506,8 @@
       }
     },
     "/carts": {
-      "post": {"tags": [
+      "post": {
+        "tags": [
           "Carts"
         ],
         "description": "",
@@ -541,8 +545,9 @@
       }
     },
     "/user/{id}": {
-      "get": {"tags": [
-          "User"
+      "get": {
+        "tags": [
+          "Users"
         ],
         "description": "",
         "parameters": [
@@ -565,8 +570,9 @@
           }
         }
       },
-      "put": {"tags": [
-          "User"
+      "put": {
+        "tags": [
+          "Users"
         ],
         "description": "",
         "parameters": [
@@ -607,8 +613,36 @@
           }
         }
       },
-      "delete": {"tags": [
-          "User"
+      "delete": {
+        "tags": [
+          "Users"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/userdetails/{id}": {
+      "delete": {
+        "tags": [
+          "Users"
         ],
         "description": "",
         "parameters": [

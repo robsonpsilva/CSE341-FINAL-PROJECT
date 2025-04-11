@@ -55,26 +55,6 @@ router.post("/products", isAuthenticated, validation.saveProduct, productsContro
 router.delete("/products/:id", isAuthenticated, productsController.deleteProduct); //Route to delete a product
 router.put("/products/:id", isAuthenticated, validation.saveProduct, productsController.updateProduct);//route to update product
 
-//route for categories
-
-/**
- * @swagger
- * tags:
- *   - name: Categories
- *     description: Operations related to managing categories.
- */
-
-/**
- * @swagger
- * /categories:
- *   get:
- *     tags:
- *       - Categories
- *     summary: Retrieve all categories
- *     responses:
- *       200:
- *         description: List of categories
- */
 
 router.get(
     "/categories",isAuthenticated, categoryController.getAllCategories); // Route to search all Categories
@@ -84,30 +64,6 @@ router.delete("/categories/:id", isAuthenticated, categoryController.deleteCateg
 router.put("/categories/:id", isAuthenticated,  validation.saveCategory, categoryController.updateCategory);//route to update category
 
 
-/**
- * @swagger
- * tags:
- *   - name: Carts
- *     description: Operations related to shopping carts.
- */
-
-/**
- * @swagger
- * /cart/{id}:
- *   put:
- *     tags:
- *       - Carts
- *     summary: Update cart items
- *     parameters:
- *       - name: id
- *         in: path
- *         required: true
- *         schema:
- *           type: string
- *     responses:
- *       200:
- *         description: Cart updated
- */
 router.get(
     "/carts/:id", isAuthenticated, cartController.getCartById); // Ler carrinho
 router.post("/carts", isAuthenticated,validation.validateCart, cartController.createCart); // Criar carrinho
@@ -150,7 +106,9 @@ router.put( "/user/:id",
   
   
   // Excluir telefone e endereço
-router.delete("/user/:id", userController.deleteUserDetails);
+router.delete("/userdetails/:id", userController.deleteUserDetails);
+
+router.delete("/user/:id", userController.deleteUser);
 
 
 module.exports = router;
