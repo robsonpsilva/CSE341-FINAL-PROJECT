@@ -5,10 +5,10 @@
     "description": "eCommerce CRUD Api",
     "version": "1.0.0"
   },
-  "host": "cse341-final-project-sgk7.onrender.com",
+  "host": "localhost:3000",
   "basePath": "/",
   "schemes": [
-    "https"
+    "http"
   ],
   "paths": {
     "/": {

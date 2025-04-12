@@ -88,9 +88,81 @@ const deleteUser = async (req, res) => {
     res.status(500).json({ message: "Error deleting user", error });
   }
 };
+// Função para criar um novo usuário
+const createUser = async (email, name) => {
+  try {
+      // Verifica se o email já está cadastrado
+      const existingUser = await mongodb
+          .getDatabase()
+          .db()
+          .collection("users")
+          .findOne({ email });
+
+      if (existingUser) {
+          throw new Error("Email already registered!");
+      }
+
+      // // Criptografa a senha
+      // const saltRounds = 10;
+      // const hashedPassword = await bcrypt.hash(password, saltRounds);
+
+      // Insere um novo usuário na coleção "users"
+      const result = await mongodb
+          .getDatabase()
+          .db()
+          .collection("users")
+          .insertOne({ email, name });
+
+      if (!result.acknowledged) {
+          throw new Error("Error creating user!");
+      }
+
+      return { message: "User created successfully!" };
+  } catch (error) {
+      throw error;
+  }
+};
+
+// Função para atualizar a senha do usuário
+const updateUser = async (email, name) => {
+  try {
+      // Verifica se o usuário existe
+      const existingUser = await mongodb
+          .getDatabase()
+          .db()
+          .collection("users")
+          .findOne({ email });
+
+      if (!existingUser) {
+          throw new Error("User not found!");
+      }
+
+
+      // Atualiza o campo "password" no banco
+      const result = await mongodb
+          .getDatabase()
+          .db()
+          .collection("users")
+          .updateOne(
+            { email }, // Filtro: busca o documento com o email fornecido
+            { $set: { name } } // Operação: atualiza o campo "name" no documento
+          );
+
+      if (result.matchedCount === 0) {
+          throw new Error("Unable to update user!");
+      }
+
+      return { message: "Password loged in successfully!" };
+  } catch (error) {
+      throw error;
+  }
+};
+
 module.exports = {
     updateUserDetails,
     getUserDetails,
     deleteUserDetails,
-    deleteUser
+    deleteUser,
+    updateUser,
+    createUser
 }
