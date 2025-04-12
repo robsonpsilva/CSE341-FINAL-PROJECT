@@ -1,4 +1,15 @@
 {
+  "name": "cse-341-final-project",
+  "version": "1.0.0",
+  "description": "This is final project for CSE 341. It is a web application that allows users to create and manage their own personal notes. The application is built using Node.js, Express, MongoDB, and Passport.js for authentication.",
+  "main": "server.js",
+  "scripts": {
+    "test": "jest --coverage",
+    "swagger": "node ./swagger.js",
+    "start": "nodemon server.js"
+  },
+  "author": "",
+  "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.1.1",
     "cookie-parser": "^1.4.7",
@@ -19,10 +30,5 @@
   },
   "devDependencies": {
     "jest": "^29.7.0"
-  },
-    "scripts": {
-      "test": "jest"
-    }
+  }
 }
-
-

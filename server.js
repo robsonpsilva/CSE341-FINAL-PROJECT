@@ -46,11 +46,11 @@ app
     res.setHeader("Access-Control-Allow-Headers",
         "Origin, X-Request-With, Content-Type, Accept, Z-Key"
     );
-    res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+    res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, UPDATE, PATCH");
     next();
 })
-.use(cors({methods: ["GET", "POST", "DELETE", "UPDATE", "PUT", "PATCH"]}))
-.use(cors({origin: "*"}))
+.use(cors({methods: ["GET", "POST", "DELETE", "UPDATE", "PUT", "PATCH", "OPTIONS"]}))
+.use(cors({origin: "*", credentials: true}))
 .use("/", require("./routes/index.js"));
 
 passport.use(new GoogleStrategy({
@@ -77,14 +77,14 @@ passport.deserializeUser((user, done) => {
 
 app.get(
   '/login', passport.authenticate('google', { scope: ['profile', 'email'] }, (req, res) => {
-    //#swagger.tags=["Login/Logout"]
+    //#swagger.tags=["Auth/Login"]
   })
 );
 
 
 app.get(
   '/logout', (req, res) => {
-    //#swagger.tags=["Login/Logout"]
+    //#swagger.tags=["Auth/Logout"]
   res.clearCookie('token');
   res.redirect('/api-docs');
 });
@@ -122,4 +122,10 @@ app.get(
 
   }
 );
+
+app.get('/api-docs/oauth2-redirect.html', (req, res) => {
+  res.sendFile('oauth2-redirect.html', { 
+    root: require('swagger-ui-dist').getAbsoluteFSPath() 
+  });
+});
 

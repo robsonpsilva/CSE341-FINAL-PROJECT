@@ -5,11 +5,25 @@
     "description": "eCommerce CRUD Api",
     "version": "1.0.0"
   },
-  "host": "cse341-final-project-sgk7.onrender.com",
+  "host": "localhost:3000",
   "basePath": "/",
   "schemes": [
-    "https"
+    "https",
+    "http"
   ],
+  "securityDefinitions": {
+    "googleOAuth": {
+      "type": "oauth2",
+      "description": "Google OAuth 2.0 authentication",
+      "flow": "accessCode",
+      "authorizationUrl": "https://accounts.google.com/o/oauth2/v2/auth",
+      "tokenUrl": "https://oauth2.googleapis.com/token",
+      "scopes": {
+        "email": "View your email address",
+        "profile": "View your basic profile info"
+      }
+    }
+  },
   "paths": {
     "/": {
       "get": {
@@ -679,7 +693,7 @@
     "/login": {
       "get": {
         "tags": [
-          "Login/Logout"
+          "Auth/Login"
         ],
         "description": "",
         "responses": {
@@ -692,7 +706,7 @@
     "/logout": {
       "get": {
         "tags": [
-          "Login/Logout"
+          "Auth/Logout"
         ],
         "description": "",
         "responses": {
@@ -711,6 +725,24 @@
           }
         }
       }
+    },
+    "/api-docs/oauth2-redirect.html": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
     }
-  }
+  },
+  "security": [
+    {
+      "googleOAuth": [
+        "email",
+        "profile"
+      ]
+    }
+  ]
 }
