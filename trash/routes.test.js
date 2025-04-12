@@ -1,5 +1,5 @@
 const request = require('supertest');
-const app = require('./app'); // Importa o app configurado
+const app = require('../app'); // Importa o app configurado
 
 // Mock da função de autenticação
 jest.mock('./middleware/authenticate', () => ({
