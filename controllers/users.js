@@ -152,11 +152,12 @@ const updateUser = async (email, name) => {
           throw new Error("Unable to update user!");
       }
 
-      return { message: "Password loged in successfully!" };
+      return { message: "User saved with succes!" };
   } catch (error) {
       throw error;
   }
 };
+
 
 module.exports = {
     updateUserDetails,

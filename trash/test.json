@@ -1,0 +1,47 @@
+{
+    "name": "IPhone 14",
+    "category": "Electronics",
+    "price": "1300",
+    "stock": "30",
+    "description": "IPhone 14",
+    "supplierid": "0005"
+  }
+
+  {
+    "name": "Computers",
+    "description": "Laptops and Desktops computers"
+  }
+
+  {
+    "name": "Computers",
+    "description": "Laptops, Desktops and servers computers"
+  }
+
+  	
+  {
+    "userId": "67f05b0c3a96a8c4e11d1b5d",
+    "items": [
+      {
+        "productId": "67f11b6ad5c0e8ce1bb2b9ff",
+        "quantity": 1
+      },
+      {
+        "productId": "67efe49ae55a5e55ade3c0d7",
+        "quantity": 20
+      }
+  ]
+  }
+
+  {
+    "_id": "67f05b0c3a96a8c4e11d1b5d",
+    "name": "Paulo Moreira dos Santos Silva",
+    "email": "paulomsilva@outlook.com",
+    "address": {
+      "street": "Silva Cesar",
+      "city": "Rio de Janeiro",
+      "state": "Rio de Janeiro",
+      "zip": "20541-110"
+    },
+    "phone": "+552199998888",
+    "updatedAt": "2025-04-11T10:51:43.542Z"
+  }

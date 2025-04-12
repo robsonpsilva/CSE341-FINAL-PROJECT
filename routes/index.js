@@ -103,6 +103,8 @@ router.put( "/user/:id",
     validation.validateUserDetails,
     userController.updateUserDetails
   );
+
+  
   
   
   // Excluir telefone e endereço
