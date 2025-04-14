@@ -3,11 +3,10 @@
     "bcrypt": "^5.1.1",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
-    "dotenv": "^16.4.7",
+    "dotenv": "^16.5.0",
     "express": "^5.1.0",
     "express-session": "^1.18.1",
     "jsonwebtoken": "^9.0.2",
-    "mongodb": "^6.15.0",
     "node": "^18.20.8",
     "passport": "^0.7.0",
     "passport-google-oauth20": "^2.0.0",
@@ -19,7 +18,8 @@
     "validatorjs": "^3.22.1"
   },
   "devDependencies": {
-    "jest": "^29.7.0"
+    "jest": "^29.7.0",
+    "mongodb": "^6.15.0"
   },
   "scripts": {
     "test": "jest"

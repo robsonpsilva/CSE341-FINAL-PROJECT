@@ -19,10 +19,10 @@ const getAllProducts = async (req, res) => {
         res.status(200).json(products);
     } catch (error) {
         // Tratamento de erros
-        console.error("Error fetching contacts:", error);
+        console.error("Error fetching products:", error);
 
         // Retornando erro 500 (Internal Server Error) ao cliente
-        res.status(500).json({error: "An error occurred while retrieving contacts." });
+        res.status(500).json({error: "An error occurred while retrieving products." });
     }
 };
 
@@ -57,7 +57,7 @@ const getSingleProduct = async (req, res) => {
     } catch (error) {
         // Tratamento de erros inesperados
         console.error("Error fetching contact:", error);
-        res.status(500).json({ error: "An error occurred while retrieving the contact." });
+        res.status(500).json({ error: "An error occurred while retrieving the product." });
     }
 };
 
