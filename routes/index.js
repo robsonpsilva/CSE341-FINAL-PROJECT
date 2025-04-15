@@ -105,7 +105,7 @@ router.put( "/user/:id",
   );
 
   
-  
+router.post("/users",isAuthenticated, validation.validateUserDetails, userController.createUser); 
   
   // Excluir telefone e endereço
 router.delete("/userdetails/:id", userController.deleteUserDetails);

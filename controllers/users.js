@@ -123,6 +123,8 @@ const createUser = async (email, name) => {
   }
 };
 
+
+
 // Função para atualizar a senha do usuário
 const updateUser = async (email, name) => {
   try {
@@ -158,6 +160,37 @@ const updateUser = async (email, name) => {
   }
 };
 
+const newUserEndpoint = async (userData) => {
+  try {
+    // Verifica se o email já está cadastrado
+    const existingUser = await mongodb
+      .getDatabase()
+      .db()
+      .collection("users")
+      .findOne({ email: userData.email });
+
+    if (existingUser) {
+      throw new Error("Email already registered!");
+    }
+
+    // Insere um novo usuário na coleção "users"
+    const result = await mongodb
+      .getDatabase()
+      .db()
+      .collection("users")
+      .insertOne(userData);
+
+    if (!result.acknowledged) {
+      throw new Error("Error creating user!");
+    }
+
+    return { message: "User created successfully!" };
+  } catch (error) {
+    throw error;
+  }
+};
+
+
 
 module.exports = {
     updateUserDetails,
@@ -165,5 +198,6 @@ module.exports = {
     deleteUserDetails,
     deleteUser,
     updateUser,
-    createUser
+    createUser,
+    newUserEndpoint
 }
