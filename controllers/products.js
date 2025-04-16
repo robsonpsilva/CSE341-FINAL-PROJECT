@@ -64,10 +64,11 @@ const getSingleProduct = async (req, res) => {
 const insertProduct = async (req, res) => {
     //#swagger.tags=["Products"]
     try {
-        const { name, category, price, stock, description, supplierid } = req.body;
+        const { name, category, price, stock, description, supplierid, 
+            product_brand, status } = req.body;
     
         // Validação básica
-        if (!name|| !category || !price || !stock || !description || !supplierid) {
+        if (!name|| !category || !price || !stock || !description || !supplierid || !product_brand || !status) {
             return res.status(400).json({ error: "All fields are required." });
         }
     
@@ -82,6 +83,8 @@ const insertProduct = async (req, res) => {
             stock,
             description, 
             supplierid,
+            product_brand,
+            status,
         };
     
         const result = await productsCollection.insertOne(newProduct);

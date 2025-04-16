@@ -71,6 +71,12 @@
                 },
                 "supplierid": {
                   "example": "any"
+                },
+                "product_brand": {
+                  "example": "any"
+                },
+                "status": {
+                  "example": "any"
                 }
               }
             }

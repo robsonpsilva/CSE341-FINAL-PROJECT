@@ -1,0 +1,25 @@
+[
+    {
+      "_id": "67efc28b6125f4d34ef2360f",
+      "name": "Avocado",
+      "category": "0002",
+      "price": 1.15,
+      "stock": 388,
+      "description": "Avocado Hass from Brazil",
+      "supplier-id": "0001",
+      "product_brand": "Santa Fé Farm",
+      "status": true
+    },
+    {
+      "_id": "67efe49ae55a5e55ade3c0d7",
+      "name": "banana",
+      "category": "0002",
+      "price": 0.13,
+      "stock": 614,
+      "description": "Cavendish: This is the most common type of banana you find in supermarkets in many parts of the world, including the US and Europe. ",
+      "suplierid": "0002",
+      "product_brand": "Santa Fé Farm",
+      "status": "true"
+    }
+  ]
+  
